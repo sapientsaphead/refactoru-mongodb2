@@ -1,0 +1,12 @@
+mixin myApplicantList(data)
+		- for(var i=0; i < data.length; i++) {
+			li= data[i].name
+		-}
+
+extends layout
+
+block content
+	.container
+		h1 Applicants
+		ul#applications.list-unstyled
+			+myApplicantList(applicants)
