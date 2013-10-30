@@ -1,10 +1,17 @@
 body {
-  font: 14px "Helvetica-Neue", Helvetica, Arial, sans-serif;
+	font: 14px "Helvetica-Neue", Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+	color: #00B7FF;
 }
 button {
 	margin: 10px;
+}
+h1 {
+	font-family: 'Volkhov', serif;
+	text-shadow: 1px 1px 1px cadetblue;
+}
+h2 {
+	font-size: 20px;
 }

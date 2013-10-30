@@ -53,21 +53,15 @@ app.get('/applicants', function(req, res){
 // displays an applicant
 app.get('/:userid', function(req, res){
 	var userid = req.params.userid;
-	var applicant = Applicant.find({name: userid}, function (err, docs) {});
-	console.log('applicant :', applicant);
-	res.render('applicant', {
-			userid: userid,
-			applicant: applicant
-		});
-	// if(applicant) {}
-	// 	res.render('applicant', {
-	// 		userid: userid,
-	// 		applicant: applicant
-	// 	});
-	// }
-	// else {
-	// 	res.send('The applicant you entered does not exist.');
-	// }
+	var applicant = Applicant.findOne({name: userid}, function (err, applicant) {
+		if (applicant){
+			res.render('applicant', {applicant: applicant});
+		}
+		else {
+			res.send('The applicant you entered does not exist.');
+		}
+	});
+		
 });
 
 // creates an applicant
