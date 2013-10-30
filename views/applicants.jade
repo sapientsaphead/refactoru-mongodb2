@@ -1,6 +1,8 @@
 mixin myApplicantList(data)
 		- for(var i=0; i < data.length; i++) {
-			li= data[i].name
+			li(data-id=""+data[i]._id+"")  
+				button.delete -
+				= data[i].name
 		-}
 
 extends layout

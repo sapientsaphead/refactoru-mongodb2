@@ -33,7 +33,7 @@ var Applicant = mongoose.model('Applicant', {name: String, bio: String, skills: 
 
 //renders the index page
 app.get('/', function(req, res){
-	res.render('index')
+	res.render('index');
 });
 
 // displays a list of applicants
@@ -41,24 +41,39 @@ app.get('/applicants', function(req, res){
 	// res.render('applicants')
 	// res.render('/applicants', {applicant: req.body})
 	Applicant.find({}, function(err, applicants){
-        
         if(err){
-            res.send(err)
+            res.send(err);
         }
         else {
-            console.log('send it')
-            res.render('applicants', {applicants: applicants})
+            res.render('applicants', {applicants: applicants});
         }   
     });
 });
 
-
+// displays an applicant
+app.get('/:userid', function(req, res){
+	var userid = req.params.userid;
+	var applicant = Applicant.find({name: userid}, function (err, docs) {});
+	console.log('applicant :', applicant);
+	res.render('applicant', {
+			userid: userid,
+			applicant: applicant
+		});
+	// if(applicant) {}
+	// 	res.render('applicant', {
+	// 		userid: userid,
+	// 		applicant: applicant
+	// 	});
+	// }
+	// else {
+	// 	res.send('The applicant you entered does not exist.');
+	// }
+});
 
 // creates an applicant
 app.post('/applicant', function(req, res){
 	// Here is where you need to get the data
 	// from the post body and store it
-	console.log(req.body);
 	// res.send({success: 'Success!'});
 
 	var developerApplicant = new Applicant (
@@ -67,21 +82,35 @@ app.post('/applicant', function(req, res){
 		skills: req.body.skills,
 		years: req.body.years,
 		why: req.body.why}
-	)
+	);
 
 	developerApplicant.save(function(err) {
 		if(err) {
-			res.send(err)
+			res.send(err);
 		}
 		else {
 			Applicant.find({}, function(err, applicantsData) {
-				res.send({ message: "Your application as been submitted",
+				res.send({ message: "Your application has been submitted",
 						   applicant: applicantsData
-						});
-			})
+				});
+			});
 		}
 	});
-	
+});
+
+app.post('/delete', function(req, res){
+	// res.render('/applicants', {applicant: req.body})
+	var object = req.body;
+	var id = object.id;
+
+	Applicant.remove({_id: id}, function(err){
+		if(err) {
+			res.send(err);
+		}
+		else {
+			res.send({message: "Applicant has been deleted."});
+		}
+    });
 });
 
 http.createServer(app).listen(app.get('port'), function(){
