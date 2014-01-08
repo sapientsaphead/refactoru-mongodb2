@@ -37,8 +37,9 @@ and you decide to create an online job application.
 model based on how the data should be structured. For example : `var Cat = mongoose.model('Cat', { name: String });`
 
 ```
-Remember that Mongoose will not create the database or the collections until you attempt to insert something into the database. 
-__You should see this after completing #2 in Part III__
+Remember that Mongoose will not create the database or the collections until you attempt to insert 
+something into the database. 
+You should see this after completing #2 in Part III
 ```
 
 #### Part III (Storing the data)
@@ -76,8 +77,7 @@ You have successfuly submitted a form and stored the data in a database!
 3. In your list that displays your applicants. Make each name a link.
 4. When you click on this link it should go to a route that looks something like `"/5266ec1d3939f24149000001"`
 
-```
 __Success!__ You have successfully built a fully functional web app!
-```
+
 
 
